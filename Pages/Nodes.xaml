@@ -1,0 +1,83 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             xmlns:local="clr-namespace:LSNSimulator.Pages" x:Class="LSNSimulator.Pages.Nodes"
+             mc:Ignorable="d" Width="1100" ScrollViewer.HorizontalScrollBarVisibility="Visible" AutomationProperties.IsRowHeader="True" AllowDrop="True" Height="700" Loaded="pageLoaded">
+    <Grid Style="{StaticResource ContentRoot}" Margin="16,24,16,20">
+        <Grid.ContextMenu>
+            <ContextMenu AllowDrop="True">
+                <TextBox/>
+            </ContextMenu>
+        </Grid.ContextMenu>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="523*"/>
+            <ColumnDefinition Width="545*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="216*"/>
+            <RowDefinition Height="125*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Number of nodes" HorizontalAlignment="Left" Margin="75,135,0,0" VerticalAlignment="Top" Height="22" Width="103" RenderTransformOrigin="-1.764,0.045"/>
+        <Label Content="Types" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.517,1.673" Width="121"/>
+        <Label Content="Processing Speed" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="121"/>
+        <Label Content="Compression Rate" HorizontalAlignment="Left" Margin="269,94,0,0" VerticalAlignment="Top" Width="151"/>
+        <Label Content="Response Size" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Width="121"/>
+        <Label Content="Overhead Size" HorizontalAlignment="Left" Margin="10,95,0,0" VerticalAlignment="Top" Width="121" RenderTransformOrigin="0.665,-3.342"/>
+        <Label Content="Active Consumption" HorizontalAlignment="Left" Margin="269,10,0,0" VerticalAlignment="Top" Width="151"/>
+        <Label Content="Low Power Consumption" HorizontalAlignment="Left" Margin="269,35,0,0" VerticalAlignment="Top" Width="151"/>
+        <Label Content="Aggregation Level" HorizontalAlignment="Left" Margin="269,63,0,0" VerticalAlignment="Top" Width="151"/>
+        <TextBox x:Name="tb_numberOfNodes" HorizontalAlignment="Left" Height="23" Margin="183,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="1"/>
+        <TextBox x:Name="tb_processingSpeed" HorizontalAlignment="Left" Height="23" Margin="136,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <TextBox x:Name="tb_compresionRate" HorizontalAlignment="Left" Height="23" Margin="425,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tb_responseSize" HorizontalAlignment="Left" Height="23" Margin="136,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.449,0.078" Text="0"/>
+        <TextBox x:Name="tb_overheadSize" HorizontalAlignment="Left" Height="23" Margin="136,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <TextBox x:Name="tb_activeConsumption" HorizontalAlignment="Left" Height="23" Margin="425,7,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tb_lowPowerConsumption" HorizontalAlignment="Left" Height="23" Margin="425,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tb_aggLevel" HorizontalAlignment="Left" Height="23" Margin="425,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="1" Grid.ColumnSpan="2"/>
+        <Button Content="Add" HorizontalAlignment="Left" Margin="345,132,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="-0.377,0.369"/>
+        <ComboBox x:Name="cb_type" HorizontalAlignment="Left" Margin="136,7,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">
+            <ComboBoxItem Content="Producer" HorizontalAlignment="Left" Width="160"/>
+            <ComboBoxItem Content="Consumer" HorizontalAlignment="Left" Width="160"/>
+            <ComboBoxItem Content="Interface" HorizontalAlignment="Left" Width="160"/>
+        </ComboBox>
+        <DataGrid x:Name="NodesTable" ItemsSource="{Binding nodesDB}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False" Margin="10,197,33,20" Grid.RowSpan="2" Visibility="Visible" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.IsSharedSizeScope="True" Grid.ColumnSpan="2" MouseLeftButtonDown="test">
+            <DataGrid.ContextMenu>
+                <ContextMenu AllowDrop="True">
+                    <MenuItem Header="Assign to selected cluster" Click="assigne_to_cluster"/>
+                    <MenuItem Header="Set producer information" Click="set_producer_information"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding cluster}" Header="Cluster" />
+                <DataGridTextColumn Binding="{Binding id}" Header="ID" />
+                <DataGridTextColumn Binding="{Binding type}" Header="Node Type"/>
+                <DataGridTextColumn Binding="{Binding processSpeed}" Header="Speed"/>
+                <DataGridTextColumn Binding="{Binding compressionLevel}" Header="Compression Level"/>
+                <DataGridTextColumn Binding="{Binding returnSize}" Header="Return Size"/>
+                <DataGridTextColumn Binding="{Binding overheadSize}" Header="Overhead Size"/>
+                <DataGridTextColumn Binding="{Binding activeConsumption}" Header="Active Consumption"/>
+                <DataGridTextColumn Binding="{Binding lowpowerConsumption}" Header="Low-power Consumption"/>
+                <DataGridTextColumn Binding="{Binding aggLevel}" Header="Aggregation level" />
+            </DataGrid.Columns>
+            <MenuItem/>
+        </DataGrid>
+
+        <Button Content="Save All" HorizontalAlignment="Left" Margin="194,158,0,0" VerticalAlignment="Top" Width="91" RenderTransformOrigin="-0.377,0.369" Click="Save_Nodes_Info_All" Grid.Column="1"/>
+        <Button Content="Load All" HorizontalAlignment="Left" Margin="290,158,0,0" VerticalAlignment="Top" Width="91" RenderTransformOrigin="-0.377,0.369" Click="Load_Nodes_Info_All" Grid.Column="1"/>
+        <Label Content="Cluster Name" Grid.Column="1" HorizontalAlignment="Left" Margin="118,35,0,0" VerticalAlignment="Top" Width="91"/>
+        <TextBox x:Name="tb_clusterName" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="214,35,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Add cluster" Grid.Column="1" HorizontalAlignment="Left" Margin="214,69,0,0" VerticalAlignment="Top" Width="120" Click="add_cluster"/>
+        <ListBox x:Name="li_clusters" ItemsSource="{Binding clustersDB}" DisplayMemberPath="name" Grid.Column="1" HorizontalAlignment="Left" Height="113" Margin="359,35,0,0" VerticalAlignment="Top" Width="176" SelectedIndex="0"/>
+        <Label Content="Available clusters" Grid.Column="1" HorizontalAlignment="Left" Margin="359,7,0,0" VerticalAlignment="Top" Width="153" Height="19"/>
+        <Button Content="Save Nodes" HorizontalAlignment="Left" Margin="25,167,0,0" VerticalAlignment="Top" Width="106" Click="Save_Nodes_Info"/>
+        <Button Content="Load Nodes" HorizontalAlignment="Left" Margin="136,167,0,0" VerticalAlignment="Top" Width="107" Click="Load_Nodes_Info"/>
+        <TextBox x:Name="tb_processingSpeedDeviation" HorizontalAlignment="Left" Height="23" Margin="159,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="0" Grid.Column="1"/>
+        <Label Content="Processing Speed Dev" HorizontalAlignment="Left" Margin="32,91,0,0" VerticalAlignment="Top" Width="122" Grid.Column="1"/>
+        <TextBox x:Name="tb_scale" HorizontalAlignment="Left" Height="23" Margin="10,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Text="1" Grid.Column="1" RenderTransformOrigin="1.108,0.913"/>
+        <Label Content="Scale" HorizontalAlignment="Left" Margin="472,135,0,0" VerticalAlignment="Top" Height="22" Width="94" RenderTransformOrigin="-1.764,0.045" Grid.ColumnSpan="2"/>
+        <Button Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="92,134,0,0" VerticalAlignment="Top" Width="75" Click="UpdateScale"/>
+    </Grid>
+</UserControl>

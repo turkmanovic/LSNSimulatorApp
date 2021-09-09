@@ -1,0 +1,18 @@
+﻿<mui:ModernWindow
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+                  x:Class="LSNSimulator.MainWindow"
+                  Title="Large Scale Network Simulator" 
+                  ContentSource="/Pages/Nodes.xaml" Width="1200" Height="800" HorizontalContentAlignment="Left" VerticalContentAlignment ="Top">
+    <mui:ModernWindow.MenuLinkGroups>
+        <mui:LinkGroup DisplayName="">
+            <mui:LinkGroup.Links>
+                <mui:Link DisplayName="Nodes" Source="/Pages/Nodes.xaml" />
+                <mui:Link DisplayName="Links" Source="/Pages/Links.xaml" />
+                <mui:Link DisplayName="Protocols" Source="/Pages/Protocol.xaml" />
+                <mui:Link DisplayName="Topology" Source="/Pages/Topology.xaml" />
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+    </mui:ModernWindow.MenuLinkGroups>
+</mui:ModernWindow>

@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="LSNSimulator.Pages.Topology"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="1100" Loaded="Test">
+    <Grid HorizontalAlignment="Left" Height="680" Margin="10,10,0,0" VerticalAlignment="Top" Width="1080">
+        <DataGrid x:Name="FirstNodesTable" AutoGenerateColumns="False" ItemsSource="{Binding DisconnectedNodes}" HorizontalAlignment="Left" Height="250" Margin="28,54,0,0" VerticalAlignment="Top" Width="220">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="SecondNodesTable" AutoGenerateColumns="False" ItemsSource="{Binding DisconnectedNodes}" HorizontalAlignment="Left" Height="250" Margin="273,54,0,0" VerticalAlignment="Top" Width="220">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <ComboBox x:Name="cb_linkSelection" SelectedIndex="0" ItemsSource="{Binding TopologyLinks}" DisplayMemberPath="linkName" HorizontalAlignment="Left" Margin="521,62,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="b_connectNodes" Content="Connect nodes" HorizontalAlignment="Left" Margin="521,106,0,0" VerticalAlignment="Top" Width="137" Click="connectNodes"/>
+        <DataGrid x:Name="TopologyTable" AutoGenerateColumns="False" ItemsSource="{Binding topologyContent}" HorizontalAlignment="Left" Height="311" Margin="28,346,0,0" VerticalAlignment="Top" Width="1042">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding NodeID}" Header="Node ID"/>
+                <DataGridTextColumn Binding="{Binding Connections}" Header="Connections"/>
+                <DataGridTextColumn Binding="{Binding ProducerInfo}" Header="Producer Info"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="b_SaveTopology" Content="Save Topology" HorizontalAlignment="Left" Margin="935,285,0,0" VerticalAlignment="Top" Width="117" Height="29" Click="saveTopology"/>
+    </Grid>
+</UserControl>

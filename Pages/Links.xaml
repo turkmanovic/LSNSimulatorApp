@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="LSNSimulator.Pages.Links"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="1100">
+    <Grid Style="{StaticResource ContentRoot}">
+        <Grid HorizontalAlignment="Left" Height="100" Margin="22,0,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label Content="Speed" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="121"/>
+        <Label Content="Deviation" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Width="121"/>
+        <Label Content="MTU Size" HorizontalAlignment="Left" Margin="10,95,0,0" VerticalAlignment="Top" Width="121" RenderTransformOrigin="0.665,-3.342"/>
+        <Label Content="Number Of Hops" HorizontalAlignment="Left" Margin="269,10,0,0" VerticalAlignment="Top" Width="151"/>
+        <Label Content="Transmit Consumption" HorizontalAlignment="Left" Margin="269,35,0,0" VerticalAlignment="Top" Width="151"/>
+        <Label Content="Receive Consumption" HorizontalAlignment="Left" Margin="269,63,0,0" VerticalAlignment="Top" Width="151"/>
+        <TextBox x:Name="tb_linkSpeed" HorizontalAlignment="Left" Height="23" Margin="136,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <TextBox x:Name="tb_linkDeviation" HorizontalAlignment="Left" Height="23" Margin="136,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.449,0.078" Text="0"/>
+        <TextBox x:Name="tb_linkMTUSize" HorizontalAlignment="Left" Height="23" Margin="136,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <TextBox x:Name="tb_linkNumberOfHops" HorizontalAlignment="Left" Height="23" Margin="425,7,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <TextBox x:Name="tb_linkTxConsumption" HorizontalAlignment="Left" Height="23" Margin="425,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <TextBox x:Name="tb_linkRxConsumption" HorizontalAlignment="Left" Height="23" Margin="425,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="1"/>
+        <Button Content="Add" HorizontalAlignment="Left" Margin="470,95,0,0" VerticalAlignment="Top" Width="75" Click="Add_Link" RenderTransformOrigin="-0.377,0.369"/>
+        <Button Content="Save" HorizontalAlignment="Left" Margin="717,158,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.377,0.369" Click="Save_Link_Info"/>
+        <Button Content="Load" HorizontalAlignment="Left" Margin="813,158,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.377,0.369" Click="Load_Link_Info"/>
+        <Label Content="Name" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" Width="121"/>
+        <TextBox x:Name="tb_linkName" HorizontalAlignment="Left" Height="23" Margin="136,7,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <DataGrid x:Name="LinksTable" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False" Margin="10,197,33,20" Visibility="Visible" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.IsSharedSizeScope="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding linkID}" Header="ID" />
+                <DataGridTextColumn Binding="{Binding linkName}" Header="Name"/>
+                <DataGridTextColumn Binding="{Binding linkSpeed}" Header="Speed"/>
+                <DataGridTextColumn Binding="{Binding linkDeviation}" Header="Deviation"/>
+                <DataGridTextColumn Binding="{Binding linkMTUSize}" Header="MTU Size"/>
+                <DataGridTextColumn Binding="{Binding linkNumberOfHops}" Header="Number of Hops"/>
+                <DataGridTextColumn Binding="{Binding linkTxConsumption}" Header="Transmit Consumption"/>
+                <DataGridTextColumn Binding="{Binding linkRxConsumption}" Header="Receive Consumption"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
